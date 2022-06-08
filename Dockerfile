@@ -22,7 +22,7 @@ COPY php.ini /etc/php/$PHP_VERSION/fpm/conf.d/99-custom.ini
 COPY php-cli.ini /etc/php/$PHP_VERSION/cli/conf.d/99-custom.ini
 
 # Enable PHP packages
-RUN phpenmod -v $PHP_VERSION -s ALL mbstring pdo_mysql gd gmp curl bcmath xml zip pdo_sqlite
+RUN phpenmod -v $PHP_VERSION -s ALL mbstring pdo_mysql gd gmp curl bcmath xml
 
 # Copy custom PHP pool config
 COPY php-fpm.conf /etc/php/$PHP_VERSION/fpm/pool.d/www.conf
