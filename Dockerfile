@@ -25,8 +25,9 @@ COPY php-cli.ini /etc/php/$PHP_VERSION/cli/conf.d/99-custom.ini
 RUN phpenmod -v $PHP_VERSION -s ALL mbstring pdo_mysql gd gmp curl bcmath xml zip pdo_sqlite
 
 # Copy custom PHP pool config
-COPY php-pool.conf /etc/php/$PHP_VERSION/fpm/pool.d/www.conf
+COPY php-fpm.conf /etc/php/$PHP_VERSION/fpm/pool.d/www.conf
 RUN sed -i "s|@@PHP_VERSION@@|$PHP_VERSION|" /etc/php/$PHP_VERSION/fpm/pool.d/www.conf
+RUN ln -sf /dev/stderr /var/log/php$PHP_VERSION-fpm.log
 
 # Setup SSH access
 RUN echo "root:Docker!" | chpasswd
