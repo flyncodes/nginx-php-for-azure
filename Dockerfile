@@ -32,7 +32,8 @@ RUN sed -i "s|@@PHP_VERSION@@|$PHP_VERSION|" /etc/php/$PHP_VERSION/fpm/pool.d/ww
 RUN echo "root:Docker!" | chpasswd
 COPY sshd_config /etc/ssh/
 
-# Copy nginx site and scripts to be ran on docker startup
+# Copy custom nginx config file, nginx site and scripts to be ran on docker startup
+COPY nginx.conf /etc/nginx/
 COPY default.conf.template /etc/nginx/templates/
 COPY docker-entrypoint.d/ /docker-entrypoint.d/
 RUN chmod -v +x /docker-entrypoint.d/*.sh
