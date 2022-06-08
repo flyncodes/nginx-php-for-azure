@@ -33,7 +33,7 @@ RUN echo "root:Docker!" | chpasswd
 COPY sshd_config /etc/ssh/
 
 # Copy custom nginx config file, nginx site and scripts to be ran on docker startup
-COPY nginx.conf /etc/nginx/
+# COPY nginx.conf /etc/nginx/
 COPY default.conf.template /etc/nginx/templates/
 COPY docker-entrypoint.d/ /docker-entrypoint.d/
 RUN chmod -v +x /docker-entrypoint.d/*.sh
