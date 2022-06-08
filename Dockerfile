@@ -8,9 +8,9 @@ ENV PHP_VERSION=8.1 \
     HOME=/var/www/html \
     TZ=Europe/London
 
-RUN apt update -y && apt install -y ca-certificates apt-transport-https software-properties-common curl
-
-RUN add-apt-repository ppa:ondrej/php -y
+RUN apt update -y && apt install -y apt-transport-https software-properties-common curl
+RUN curl -sSL https://packages.sury.org/php/README.txt | bash -x
+RUN apt update -y && apt upgrade -y
 
 RUN apt install -y php$PHP_VERSION-fpm php$PHP_VERSION-mysql \
     php$PHP_VERSION-common php$PHP_VERSION-soap \
