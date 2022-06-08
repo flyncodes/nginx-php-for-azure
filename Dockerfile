@@ -12,14 +12,14 @@ ENV PHP_VERSION=8.1 \
 RUN curl -sSL https://packages.sury.org/php/README.txt | bash -x
 
 RUN apt install -y php$PHP_VERSION-fpm php$PHP_VERSION-mysql \
-    php$PHP_VERSION-common php$PHP_VERSION-soap \
-	  php$PHP_VERSION-gd php$PHP_VERSION-xml php$PHP_VERSION-xmlrpc \ 
+    php$PHP_VERSION-common libgmp-dev php$PHP_VERSION-gmp php$PHP_VERSION-gd \
+    php$PHP_VERSION-bcmath php$PHP_VERSION-xml php$PHP_VERSION-mbstring \ 
     php$PHP_VERSION-curl nano net-tools zip unzip openssh-server
 
 COPY php.ini /etc/php/$PHP_VERSION/fpm/conf.d/99-custom.ini
 COPY php-cli.ini /etc/php/$PHP_VERSION/cli/conf.d/99-custom.ini
 
-RUN phpenmod -v $PHP_VERSION -s ALL pdo_mysql gd curl xml zip pdo_sqlite
+RUN phpenmod -v $PHP_VERSION -s ALL mbstring pdo_mysql gd gmp curl bcmath xml zip pdo_sqlite
 
 COPY php-pool.conf /etc/php/$PHP_VERSION/fpm/pool.d/www.conf
 RUN sed -i "s|@@PHP_VERSION@@|$PHP_VERSION|" /etc/php/$PHP_VERSION/fpm/pool.d/www.conf
