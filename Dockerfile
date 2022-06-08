@@ -16,6 +16,8 @@ RUN apt install -y php$PHP_VERSION-fpm php$PHP_VERSION-mysql \
 	  php$PHP_VERSION-gd php$PHP_VERSION-xml php$PHP_VERSION-xmlrpc \ 
     php$PHP_VERSION-curl nano net-tools zip unzip openssh-server
 
+RUN ls "/etc/php/$PHP_VERSION/"
+RUN ls "/etc/php/$PHP_VERSION/fpm/"
 RUN mv "/etc/php/$PHP_VERSION/fpm/php.ini-production" "/etc/php/$PHP_VERSION/fpm/php.ini"
 COPY    php.ini /etc/php/$PHP_VERSION/fpm/conf.d/99-custom.ini
 COPY    php-cli.ini /etc/php/$PHP_VERSION/cli/conf.d/99-custom.ini
