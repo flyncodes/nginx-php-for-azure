@@ -27,7 +27,7 @@ RUN phpenmod -v $PHP_VERSION -s ALL mbstring pdo_mysql gd gmp curl bcmath xml
 # Copy custom PHP pool config
 COPY php-fpm.conf /etc/php/$PHP_VERSION/fpm/pool.d/www.conf
 RUN sed -i "s|@@PHP_VERSION@@|$PHP_VERSION|" /etc/php/$PHP_VERSION/fpm/pool.d/www.conf
-RUN ln -sf /dev/stderr /var/log/php$PHP_VERSION-fpm.log
+RUN ln -sf /dev/stdout /var/log/php$PHP_VERSION-fpm.log
 
 # Setup SSH access
 RUN echo "root:Docker!" | chpasswd
