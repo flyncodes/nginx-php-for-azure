@@ -21,6 +21,9 @@ COPY php-cli.ini /etc/php/$PHP_VERSION/cli/conf.d/99-custom.ini
 
 RUN phpenmod -v $PHP_VERSION -s ALL pdo_mysql gd curl xml zip pdo_sqlite
 
+COPY php-pool.conf /etc/php/$PHP_VERSION/fpm/pool.d/www.conf
+RUN sed -i "s|@@PHP_VERSION@@|$PHP_VERSION|" /etc/php/$PHP_VERSION/fpm/pool.d/www.conf
+
 COPY default.conf.template /etc/nginx/templates/
 COPY docker-entrypoint.d/ /docker-entrypoint.d/
 RUN chmod -v +x /docker-entrypoint.d/*.sh
