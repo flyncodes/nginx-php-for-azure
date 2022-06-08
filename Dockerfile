@@ -17,7 +17,6 @@ RUN apt install -y php$PHP_VERSION-fpm php$PHP_VERSION-mysql \
     php$PHP_VERSION-curl nano net-tools zip unzip openssh-server
 
 
-RUN ls "/usr/local/etc/php"
 RUN ls "/etc/php/$PHP_VERSION/"
 RUN ls "/etc/php/$PHP_VERSION/fpm/"
 RUN cat "/etc/php/$PHP_VERSION/fpm/php.ini"
