@@ -2,8 +2,9 @@ FROM nginx:stable
 
 WORKDIR /var/www/html
 
-ENV PHP_VERSION=8.1 \
-    NGINX_PORT=8080 \
+ARG PHP_VERSION=8.1
+
+ENV NGINX_PORT=8080 \
     NGINX_VIRTUAL_HOST=$DOCKER_HOST \
     HOME=/var/www/html \
     TZ=Europe/London
