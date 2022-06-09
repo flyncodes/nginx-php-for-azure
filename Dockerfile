@@ -14,7 +14,7 @@ ENV NGINX_PORT=8080 \
 RUN curl -sSL https://packages.sury.org/php/README.txt | bash -x
 
 # Install PHP packages and SSH server
-RUN apt install -y php$PHP_VERSION-fpm php$PHP_VERSION-mysql \
+RUN apt install -y php$PHP_VERSION-fpm php$PHP_VERSION-mysql php$PHP_VERSION-sqlite \
     php$PHP_VERSION-common libgmp-dev php$PHP_VERSION-gmp php$PHP_VERSION-gd \
     php$PHP_VERSION-bcmath php$PHP_VERSION-xml php$PHP_VERSION-mbstring \ 
     php$PHP_VERSION-curl nano net-tools zip unzip openssh-server
@@ -24,7 +24,7 @@ COPY php.ini /etc/php/$PHP_VERSION/fpm/conf.d/99-custom.ini
 COPY php-cli.ini /etc/php/$PHP_VERSION/cli/conf.d/99-custom.ini
 
 # Enable PHP packages
-RUN phpenmod -v $PHP_VERSION -s ALL mbstring pdo_mysql gd gmp curl bcmath xml
+RUN phpenmod -v $PHP_VERSION -s ALL mbstring pdo_mysql pdo_sqlite gd gmp curl bcmath xml
 
 # Copy custom PHP pool config
 COPY php-fpm.conf /etc/php/$PHP_VERSION/fpm/pool.d/www.conf
