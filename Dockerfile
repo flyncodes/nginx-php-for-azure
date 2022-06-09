@@ -14,7 +14,7 @@ ENV NGINX_PORT=8080 \
 RUN curl -sSL https://packages.sury.org/php/README.txt | bash -x
 
 # Install PHP packages and SSH server
-RUN apt install -y php$PHP_VERSION-fpm php$PHP_VERSION-mysql \
+RUN apt install -y php$PHP_VERSION-fpm php$PHP_VERSION-mysql php$PHP_VERSION-sqlite3 \
     php$PHP_VERSION-common libgmp-dev php$PHP_VERSION-gmp php$PHP_VERSION-gd \
     php$PHP_VERSION-bcmath php$PHP_VERSION-xml php$PHP_VERSION-mbstring \ 
     php$PHP_VERSION-curl nano net-tools zip unzip openssh-server
