@@ -13,6 +13,16 @@ server {
     server_tokens  off;
     proxy_buffering  off;
 
+    location ~ /\.(?!well-known).* {
+        deny all;
+        return 404;
+    }
+
+    location ~ /\.ht {
+        deny all;
+        return 404;
+    }
+
     location / {
 	try_files $uri $uri/ =404;
     }
@@ -46,11 +56,4 @@ server {
     	fastcgi_intercept_errors off;
     	fastcgi_pass    unix:/run/php/php${PHP_VERSION}-fpm.sock;
     }
-
-    # deny access to .htaccess files, if Apache's document root
-    # concurs with nginx's one
-    #
-    #location ~ /\.ht {
-    #    deny  all;
-    #}
 }
