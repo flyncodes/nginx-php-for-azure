@@ -17,14 +17,14 @@ RUN curl -sSL https://packages.sury.org/php/README.txt | bash -x
 RUN apt install -y php$PHP_VERSION-fpm php$PHP_VERSION-mysql php$PHP_VERSION-sqlite3 \
     php$PHP_VERSION-common libgmp-dev php$PHP_VERSION-gmp php$PHP_VERSION-gd \
     php$PHP_VERSION-bcmath php$PHP_VERSION-xml php$PHP_VERSION-mbstring \ 
-    php$PHP_VERSION-curl nano net-tools zip unzip openssh-server
+    php$PHP_vERSION-imap php$PHP_VERSION-curl nano net-tools zip unzip openssh-server
 
 # Copy custom PHP ini
 COPY php.ini /etc/php/$PHP_VERSION/fpm/conf.d/99-custom.ini
 COPY php-cli.ini /etc/php/$PHP_VERSION/cli/conf.d/99-custom.ini
 
 # Enable PHP packages
-RUN phpenmod -v $PHP_VERSION -s ALL mbstring sqlite3 pdo_mysql pdo_sqlite gd gmp curl bcmath xml
+RUN phpenmod -v $PHP_VERSION -s ALL mbstring sqlite3 pdo_mysql pdo_sqlite gd gmp curl bcmath xml imap
 
 # Copy custom PHP pool config
 COPY php-fpm.conf /etc/php/$PHP_VERSION/fpm/pool.d/www.conf
