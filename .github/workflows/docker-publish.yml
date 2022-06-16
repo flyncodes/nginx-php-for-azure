@@ -26,7 +26,7 @@ jobs:
   build:
     strategy:
       matrix:
-        version: [7.4, 8.1]
+        version: [7.4, 8.0, 8.1]
     runs-on: ubuntu-latest
     env:
       PHP_VERSION: ${{ matrix.version }}
