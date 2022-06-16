@@ -1,5 +1,5 @@
 server {
-    listen       ${NGINX_PORT};
+    listen       ${PORT};
     listen  [::]:${PORT};
     server_name  ${NGINX_VIRTUAL_HOST};
 
