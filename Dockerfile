@@ -10,14 +10,17 @@ ENV PORT=8080 \
     HOME=/var/www/html \
     TZ=Europe/London
 
-# Enable PHP repository - https://github.com/oerdnj/deb.sury.org/wiki/Frequently-Asked-Questions#ubuntu
-RUN sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
+# Install Software Properties Common & Enable PHP repository - https://github.com/oerdnj/deb.sury.org/
+RUN apt-get install -y software-properties-common && LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
 
 # Install PHP packages and SSH server
 RUN apt install -y php$PHP_VERSION-fpm php$PHP_VERSION-mysql php$PHP_VERSION-sqlite3 \
     php$PHP_VERSION-common libgmp-dev php$PHP_VERSION-gmp php$PHP_VERSION-gd \
     php$PHP_VERSION-bcmath php$PHP_VERSION-xml php$PHP_VERSION-mbstring \ 
     php$PHP_vERSION-imap php$PHP_VERSION-curl nano net-tools zip unzip openssh-server
+
+# Clean packagge metadata
+RUN rm -rf /var/lib/apt/lists/* && apt clean
 
 # Copy custom PHP ini
 COPY php.ini /etc/php/$PHP_VERSION/fpm/conf.d/99-custom.ini
