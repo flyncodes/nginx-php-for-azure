@@ -10,8 +10,8 @@ ENV PORT=8080 \
     HOME=/var/www/html \
     TZ=Europe/London
 
-# Install Software Properties Common & Enable PHP repository - https://github.com/oerdnj/deb.sury.org/
-RUN apt-get install -y software-properties-common && LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
+# Enable PHP repository
+RUN curl -sSL https://packages.sury.org/php/README.txt | bash -x
 
 # Install PHP packages and SSH server
 RUN apt install -y php$PHP_VERSION-fpm php$PHP_VERSION-mysql php$PHP_VERSION-sqlite3 \
