@@ -11,7 +11,7 @@ ENV PORT=8080 \
     TZ=Europe/London
 
 # Enable PHP repository - https://github.com/oerdnj/deb.sury.org/wiki/Frequently-Asked-Questions#ubuntu
-RUN LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
+RUN sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
 
 # Install PHP packages and SSH server
 RUN apt install -y php$PHP_VERSION-fpm php$PHP_VERSION-mysql php$PHP_VERSION-sqlite3 \
