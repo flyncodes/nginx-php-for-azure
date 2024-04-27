@@ -1,14 +1,17 @@
 FROM nginx:stable
 
-WORKDIR /var/www/html
-
 ARG PHP_VERSION
 ENV PHP_VERSION=${PHP_VERSION:-8.2}
 
 ENV PORT=8080 \
     NGINX_VIRTUAL_HOST=_ \
-    HOME=/var/www/html \
+    NGINX_ROOT=/var/www/html \
     TZ=Europe/London
+
+# Make a directory on the local disk to copy the code from Azure shared storage to this
+RUN mkdir -p $NGINX_ROOT
+
+WORKDIR $NGINX_ROOT
 
 # Enable PHP repository
 RUN curl -sSL https://packages.sury.org/php/README.txt | bash -x

@@ -3,7 +3,7 @@ server {
     listen  [::]:${PORT};
     server_name  ${NGINX_VIRTUAL_HOST};
 
-    root   /var/www/html;
+    root   ${NGINX_ROOT};
     index  index.php index.html index.htm;
 
     error_log  /var/log/nginx/error.log warn;
