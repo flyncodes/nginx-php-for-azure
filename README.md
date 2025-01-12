@@ -2,11 +2,10 @@
 Nginx and PHP docker container for use primarily in Azure App Services - works in other environments such as bare metal though.
 
 ## Built with the following PHP Versions
-- 7.4
-- 8.0
 - 8.1
 - 8.2
 - 8.3
+- 8.4
 
 Append "php" to the beginning of the PHP version for the image name, e.g "php8.2"  
 Recommend you only use supported PHP versions, the rest are for backwards compatibility and may be removed in the future.
